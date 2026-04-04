@@ -2,16 +2,8 @@
 import requests
 import time
 from typing import List, Dict, Any
-from pathlib import Path
-import sys
-
-project_root = Path(__file__).resolve().parents[1]
-if str(project_root) not in sys.path:
-    sys.path.insert(0, str(project_root))
-
-import config
-
-API_KEY = config.SEMANTIC_SCHOLAR_API_KEY
+import os
+API_KEY = os.environ.get("SEMANTIC_SEARCH_API_KEY")
 _last_request_time = 0
 
 
@@ -110,10 +102,3 @@ def semantic_scholar_search(
                     "status": "error",
                     "message": f"Error after {retries} attempts: {str(e)}"
                 }
-
-
-if __name__ == "__main__":
-    import json
-
-    result = semantic_scholar_search("attention is all you need", max_results=1)
-    print(json.dumps(result, indent=2))

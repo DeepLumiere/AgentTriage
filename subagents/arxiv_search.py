@@ -1,7 +1,7 @@
 import arxiv
 import time
 from typing import List, Dict, Any
-
+import os
 
 def arxiv_search(query: str, max_results: int = 5, retries: int = 3) -> Dict[str, Any]:
     """
@@ -70,13 +70,13 @@ def arxiv_search(query: str, max_results: int = 5, retries: int = 3) -> Dict[str
 
 import json
 
-result = arxiv_search('ti: "Attention Is All You Need"', max_results=1)
-print(json.dumps(result, indent=2))
+# result = arxiv_search('ti: "Attention Is All You Need"', max_results=1)
+# print(json.dumps(result, indent=2))
 
 from google.adk.agents.llm_agent import Agent
 
 arxiv_search_agent = Agent(
-    model="gemini-2.5-flash-lite",
+    model=os.environ.get("MODEL"),
     name="arxiv_search_agent",
     instruction="Search ArXiv for related papers using the given query and summarize the results as structured JSON, extracting titles, authors, and summary links.",
     output_key="arxiv_results",
