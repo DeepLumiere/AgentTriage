@@ -16,9 +16,6 @@ To launch the agent's web interface, use:
 adk web subagents
 ```
 
----
-
-*Note: A custom FastAPI streaming frontend is also included in this repository as an alternative to `adk web`. You can start it by running `python app.py` and navigating to `http://127.0.0.1:8000/`.*
 
 ## Available Sub-Agents
 * `arxiv_search_agent`: Finds relevant papers on ArXiv.
